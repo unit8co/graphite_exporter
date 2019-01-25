@@ -83,6 +83,13 @@ type graphiteCollector struct {
 	strictMatch bool
 }
 
+func bool2float(b bool) float64 {
+	if b {
+	   return 1.0
+	}
+	return 0.0
+ } 
+
 func newGraphiteCollector() *graphiteCollector {
 	c := &graphiteCollector{
 		ch:          make(chan *graphiteSample),
@@ -129,9 +136,16 @@ func (c *graphiteCollector) processLine(line string) {
 
 	value, err := strconv.ParseFloat(parts[1], 64)
 	if err != nil {
-		log.Infof("Invalid value in line: %s", line)
-		return
+		var valueB bool
+		valueB, err := strconv.ParseBool(parts[1])
+		if err != nil {
+			log.Infof("Invalid value in line: %s", line)
+			return
+		} else {
+			value = bool2float(valueB)
+		}
 	}
+
 	timestamp, err := strconv.ParseFloat(parts[2], 64)
 	if err != nil {
 		log.Infof("Invalid timestamp in line: %s", line)

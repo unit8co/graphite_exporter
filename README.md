@@ -3,6 +3,7 @@
 [![CircleCI](https://circleci.com/gh/prometheus/graphite_exporter/tree/master.svg?style=shield)][circleci]
 [![Docker Repository on Quay](https://quay.io/repository/prometheus/graphite-exporter/status)][quay]
 [![Docker Pulls](https://img.shields.io/docker/pulls/prom/graphite-exporter.svg?maxAge=604800)][hub]
+Graphite Exporter is used to enable Prometheus integration with Dataiku/Dss monitoring, which supports only Graphite/Carbon.
 
 An exporter for metrics exported in the [Graphite plaintext
 protocol](http://graphite.readthedocs.org/en/latest/feeding-carbon.html#the-plaintext-protocol).
